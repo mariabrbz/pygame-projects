@@ -24,7 +24,4 @@ class Animal:
         self.front_path = os.path.join(gc.ASSET_DIR, self.name)
         self.image = image.load(self.front_path)
         self.image = transform.scale(self.image, (gc.IMAGE_SIZE - 2 * gc.MARGIN, gc.IMAGE_SIZE - 2 * gc.MARGIN))
-        #self.box = image.load()
-        #self.box = self.image.copy()
-        #self.box.fill((238, 130, 238))
         self.skip = False
