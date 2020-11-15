@@ -11,6 +11,7 @@ pygame.init()
 screen = display.set_mode((gc.width, gc.height))
 display.set_caption('Pride Snake')
 font = font.Font('freesansbold.ttf', 18) 
+background = pygame.image.load("assets/background.png")
 screen.fill(gc.white)
 
 clock = time.Clock()
@@ -82,6 +83,7 @@ def game_loop():
         snake_head_x += x_move
         snake_head_y += y_move
         screen.fill(gc.white)
+        screen.blit(background, (0, 0))
         draw.rect(screen, colors[color_index + 1], (food_x, food_y, gc.size_food, gc.size_food))
         
         snake_head = [snake_head_x, snake_head_y]
@@ -107,7 +109,6 @@ def game_loop():
                 color_index = 0
         
         score(snake_length - 1)
-        
         display.flip()
         clock.tick(frames)
         
