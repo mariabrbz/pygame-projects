@@ -12,6 +12,7 @@ screen = display.set_mode((gc.width, gc.height))
 display.set_caption('Pride Snake')
 font = font.Font('freesansbold.ttf', 18) 
 background = pygame.image.load("assets/background.png")
+end = pygame.image.load("assets/end.png")
 screen.fill(gc.white)
 
 clock = time.Clock()
@@ -25,9 +26,9 @@ def snake_add(snake_size, snake_list):
         else:
             i = 1
 
-def score(win):
+def score(win, x, y):
     write = font.render("Score: " + str(win), True, gc.black)
-    screen.blit(write, (15, 15))
+    screen.blit(write, (x, y))
             
 def game_loop():
     running = True
@@ -46,17 +47,18 @@ def game_loop():
     
     while(running):
         while(finishedGame):
-            screen.fill(gc.black)
+            screen.blit(end, (0, 0))
+            score(snake_length - 1, 460, 20)
             display.flip()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
                     finishedGame = False
                 elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_q:
+                    if event.key == pygame.K_ESCAPE:
                         running = False
                         finishedGame = False
-                    elif event.key == pygame.K_p:
+                    elif event.key == pygame.K_RETURN:
                         game_loop()
 
         for e in pygame.event.get():
@@ -82,7 +84,6 @@ def game_loop():
 
         snake_head_x += x_move
         snake_head_y += y_move
-        screen.fill(gc.white)
         screen.blit(background, (0, 0))
         draw.rect(screen, colors[color_index + 1], (food_x, food_y, gc.size_food, gc.size_food))
         
@@ -108,9 +109,9 @@ def game_loop():
             else:
                 color_index = 0
         
-        score(snake_length - 1)
+        score(snake_length - 1, 20, 20)
         display.flip()
-        clock.tick(frames)
+        clock.tick(gc.frames)
         
     pygame.quit()
 
