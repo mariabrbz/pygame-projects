@@ -2,13 +2,15 @@ import pygame
 import random
 import game_config as gc
 
-from pygame import display, event, draw, time
+from pygame import display, event, draw, time, font
 
 colors = gc.colors
 
 pygame.init()
+
 screen = display.set_mode((gc.width, gc.height))
 display.set_caption('Pride Snake')
+font = font.Font('freesansbold.ttf', 18) 
 screen.fill(gc.white)
 
 clock = time.Clock()
@@ -22,9 +24,9 @@ def snake_add(snake_size, snake_list):
         else:
             i = 1
 
-#def score(win):
- #   write = font_style.render("Score: " + str(win), True, fo)
-  #  screen.blit(write, (0, 0))
+def score(win):
+    write = font.render("Score: " + str(win), True, gc.black)
+    screen.blit(write, (15, 15))
             
 def game_loop():
     running = True
@@ -104,7 +106,7 @@ def game_loop():
             else:
                 color_index = 0
         
-        #score(snake_length - 1)
+        score(snake_length - 1)
         
         display.flip()
         clock.tick(frames)
