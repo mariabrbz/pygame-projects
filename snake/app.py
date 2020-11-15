@@ -111,7 +111,7 @@ def game_loop():
         
         score(snake_length - 1, 20, 20)
         display.flip()
-        clock.tick(gc.frames)
+        clock.tick(frames)
         
     pygame.quit()
 
